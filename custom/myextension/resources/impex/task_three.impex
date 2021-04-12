@@ -1,0 +1,7 @@
+INSERT_UPDATE CarProduct;code[unique=true];name;color;weight;catalogVersion(version)
+                        ;carOne;BMW;green;800.78;Staged
+                        ;carTwo;Honda;red;1232.78;Staged
+                        ;carThree;Audi;black;1203.78;Staged
+
+UPDATE CarProduct[batchmode=true];itemtype(code)[unique=true]; name
+                                 ;CarProduct;The Best Product EverThe Best Product Ever
