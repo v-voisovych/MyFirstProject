@@ -1,0 +1,8 @@
+Select * From {Customer} where{name} like'M%'
+
+select * from
+{
+  product as p
+  join catalogversion as cv on {p.catalogversion}={cv.pk}
+}
+ where {cv.version}='Staged'
