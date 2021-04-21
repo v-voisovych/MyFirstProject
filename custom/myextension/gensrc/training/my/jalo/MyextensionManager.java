@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 21 квіт. 2021 р., 10:08:01                  ---
+ * --- Generated at 21 квіт. 2021 р., 12:36:08                  ---
  * ----------------------------------------------------------------
  */
 package training.my.jalo;
@@ -16,8 +16,11 @@ import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.extension.Extension;
 import de.hybris.platform.jalo.extension.ExtensionManager;
 import de.hybris.platform.jalo.link.Link;
+import de.hybris.platform.jalo.security.Principal;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
+import de.hybris.platform.jalo.user.User;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import training.my.constants.MyextensionConstants;
@@ -36,6 +39,9 @@ public class MyextensionManager extends Extension
 	static
 	{
 		final Map<String, Map<String, AttributeMode>> ttmp = new HashMap();
+		Map<String, AttributeMode> tmp = new HashMap<String, AttributeMode>();
+		tmp.put("age", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.jalo.user.User", Collections.unmodifiableMap(tmp));
 		DEFAULT_INITIAL_ATTRIBUTES = ttmp;
 	}
 	@Override
@@ -48,6 +54,79 @@ public class MyextensionManager extends Extension
 			ret.putAll(attr);
 		}
 		return ret;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>User.age</code> attribute.
+	 * @return the age
+	 */
+	public Integer getAge(final SessionContext ctx, final User item)
+	{
+		return (Integer)item.getProperty( ctx, MyextensionConstants.Attributes.User.AGE);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>User.age</code> attribute.
+	 * @return the age
+	 */
+	public Integer getAge(final User item)
+	{
+		return getAge( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>User.age</code> attribute. 
+	 * @return the age
+	 */
+	public int getAgeAsPrimitive(final SessionContext ctx, final User item)
+	{
+		Integer value = getAge( ctx,item );
+		return value != null ? value.intValue() : 0;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>User.age</code> attribute. 
+	 * @return the age
+	 */
+	public int getAgeAsPrimitive(final User item)
+	{
+		return getAgeAsPrimitive( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>User.age</code> attribute. 
+	 * @param value the age
+	 */
+	public void setAge(final SessionContext ctx, final User item, final Integer value)
+	{
+		item.setProperty(ctx, MyextensionConstants.Attributes.User.AGE,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>User.age</code> attribute. 
+	 * @param value the age
+	 */
+	public void setAge(final User item, final Integer value)
+	{
+		setAge( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>User.age</code> attribute. 
+	 * @param value the age
+	 */
+	public void setAge(final SessionContext ctx, final User item, final int value)
+	{
+		setAge( ctx, item, Integer.valueOf( value ) );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>User.age</code> attribute. 
+	 * @param value the age
+	 */
+	public void setAge(final User item, final int value)
+	{
+		setAge( getSession().getSessionContext(), item, value );
 	}
 	
 	public Actor createActor(final SessionContext ctx, final Map attributeValues)

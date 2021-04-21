@@ -76,7 +76,7 @@
 				  jaloclass="training.my.jalo.Actor"
 				  autocreate="true"
 		>
-			<deployment table="Actor" typecode="11001"/>
+			<deployment table="Actor" typecode="11001" />
 			<attributes>
 				<attribute qualifier="firstName" type="java.lang.String">
 					<description>Actor's name</description>
@@ -90,6 +90,17 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+
+		<itemtype code="User" generate="false" autocreate="false">
+			<attributes>
+				<attribute qualifier="age" type="java.lang.Integer">
+					<modifiers optional="false" write="true" read="true"/>
+					<persistence type="property"/>
+					<defaultvalue>0</defaultvalue>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
 
 	</itemtypes>
 </items>

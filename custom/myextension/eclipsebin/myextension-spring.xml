@@ -111,6 +111,14 @@
     <alias name="myOrderFacadeImpl" alias="myOrderFacadeImpl"/>
     <bean id="myOrderFacadeImpl" class="training.my.facade.impl.MyOrderFacadeImpl"/>
 
+    <bean id="myFirstInterceptor" class="training.my.interceptor.MyFirstInterceptor"/>
+
+    <bean id="myFirstInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="myFirstInterceptor"/>
+        <property name="typeCode" value="User"/>
+    </bean>
+
+
 <!--    <bean id="orderController" class="training.my.controller.OrderController"/>-->
 
 </beans>

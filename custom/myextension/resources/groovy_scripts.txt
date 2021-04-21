@@ -2,3 +2,13 @@ Module 2 task 3
 
 def a = spring.getBean("myProductDataFacadeImpl");
 println a.getProductData("carOne").getCodeWithPK();
+
+
+Module 2 task 4
+
+import de.hybris.platform.core.model.user.UserModel;
+def ms = spring.getBean("modelService");
+UserModel um = new UserModel();
+um.setAge(-100);
+um.setUid("testUser");
+ms.save(um);

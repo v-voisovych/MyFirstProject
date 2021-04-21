@@ -59,10 +59,6 @@
 
 	-->
 
-	<bean class="de.hybris.platform.commercefacades.data.ProductData">
-		<property name="codeWithPK" type="java.lang.String"/>
-	</bean>
-
 	<bean class="training.my.facade.product.data.ProductData">
 		<property name="codeWithPK" type="java.lang.String"/>
 	</bean>

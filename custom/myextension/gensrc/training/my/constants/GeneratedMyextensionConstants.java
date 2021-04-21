@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 21 квіт. 2021 р., 10:08:01                  ---
+ * --- Generated at 21 квіт. 2021 р., 12:36:08                  ---
  * ----------------------------------------------------------------
  */
 package training.my.constants;
@@ -22,7 +22,10 @@ public class GeneratedMyextensionConstants
 	}
 	public static class Attributes
 	{
-		// no constants defined.
+		public static class User
+		{
+			public static final String AGE = "age".intern();
+		}
 	}
 	public static class Relations
 	{
