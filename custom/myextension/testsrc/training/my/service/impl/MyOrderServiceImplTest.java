@@ -5,6 +5,7 @@ import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.jalo.order.Order;
 import de.hybris.platform.jalo.user.User;
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import de.hybris.platform.servicelayer.search.impl.SearchResultImpl;
 import de.hybris.platform.testframework.Assert;
@@ -13,6 +14,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import training.my.jalo.CarProduct;
+import training.my.model.CarProductModel;
 
 
 import java.util.ArrayList;
@@ -50,7 +53,6 @@ public class MyOrderServiceImplTest {
         when(flexibleSearchService.search(query)).thenReturn(searchResult);
         when(searchResult.getResult()).thenReturn(list);
         Assert.assertEquals(order.getCode(), myOrderService.latestOrder().getCode());
-
     }
 
     @Test
@@ -65,7 +67,7 @@ public class MyOrderServiceImplTest {
     @Test
     public void finUserWithMaxOrderTest() {
         String query = "SELECT {user} FROM {order} GROUP BY {user} HAVING COUNT(*) = ({{SELECT COUNT(*) FROM {order} GROUP BY {user} ORDER BY COUNT(*) DESC LIMIT 1}})";
-        List list = new ArrayList();
+        List<UserModel> list = new ArrayList<>();
         UserModel user =  new UserModel();
         user.setName("Valera");
         list.add(user);

@@ -1,9 +1,25 @@
 #Task Three
 
-#INSERT_UPDATE CarProduct;code[unique=true];name;color;weight;catalogVersion(version)
-#                        ;carOne;BMW;green;800.78;Staged
-#                        ;carTwo;Honda;red;1232.78;Staged
-#                        ;carThree;Audi;black;1203.78;Staged
+INSERT_UPDATE Catalog;id[unique=true]
+                     ;A
+                     ;B
+                     ;C
+                     ;D
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active
+                            ;A;Online;true
+#                            ;B;Staged;false
+#                            ;C;Online;true
+                            ;D;Staged;false
+
+
+
+INSERT_UPDATE CarProduct;code[unique=true];name;color;weight;catalogVersion(version)
+                        ;carOne;BMW;green;800.78;Staged
+                        ;carTwo;Honda;red;1232.78;Staged
+                        ;carThree;Audi;black;1203.78;Staged
+
+INSERT_UPDATE Product;code[unique=true];name;catalogVersion(version)
+                     ;productOne;productOne;Staged
 #
 #UPDATE CarProduct[batchmode=true];itemtype(code)[unique=true]; name
 #                                 ;CarProduct;The Best Product EverThe Best Product Ever

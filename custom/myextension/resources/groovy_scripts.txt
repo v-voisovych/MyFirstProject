@@ -1,0 +1,4 @@
+Module 2 task 3
+
+def a = spring.getBean("myProductDataFacadeImpl");
+println a.getProductData("carOne").getCodeWithPK();

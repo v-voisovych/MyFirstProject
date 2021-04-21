@@ -87,5 +87,30 @@
     <bean id="myOrderService" class="training.my.service.impl.MyOrderServiceImpl">
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
-			
+
+    <bean id="myDynamicHandlerCarProduct" class="training.my.my_dynamic_handler_car_product.MyDynamicHandlerCarProduct"/>
+
+    <bean id="myFirstPopulator" class="training.my.module_two.task_three.MyFirstPopulator"/>
+
+    <bean id="myFirstConverter"  parent="abstractPopulatingConverter">
+        <property name="targetClass" value="training.my.facade.product.data.ProductData"/>
+        <property name="populators">
+            <list>
+                <ref bean="myFirstPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <alias name="myProductDataFacadeImpl" alias="myProductDataFacadeImpl"/>
+    <bean id="myProductDataFacadeImpl" class="training.my.facade.impl.MyProductDataFacadeImpl">
+        <property name="productDataConverter" ref="myFirstConverter"/>
+        <property name="productService" ref="productService"/>
+    </bean>
+
+
+    <alias name="myOrderFacadeImpl" alias="myOrderFacadeImpl"/>
+    <bean id="myOrderFacadeImpl" class="training.my.facade.impl.MyOrderFacadeImpl"/>
+
+<!--    <bean id="orderController" class="training.my.controller.OrderController"/>-->
+
 </beans>
