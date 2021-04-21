@@ -12,3 +12,23 @@ UserModel um = new UserModel();
 um.setAge(-100);
 um.setUid("testUser");
 ms.save(um);
+
+Module 2 task 5
+
+import de.hybris.platform.core.model.order.CartModel;
+import de.hybris.platform.servicelayer.search.SearchResult;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.user.UserModel;
+def a = spring.getBean("myCarService");
+def fs = spring.getBean("flexibleSearchService");
+String queryCRR = "select {pk} from {currency}";
+SearchResult<CurrencyModel> sr = fs.search(queryCRR)
+CurrencyModel cr = sr.getResult().get(0);
+CartModel cm = new CartModel();
+String queryUM = "select {pk} from {user} where {pk} = 8796125888516";
+SearchResult<UserModel> reUM = fs.search(queryUM);
+UserModel um = reUM.getResult().get(0);
+cm.setDate(new Date());
+cm.setCurrency(cr);
+cm.setUser(um)
+a.addCartModel(cm);

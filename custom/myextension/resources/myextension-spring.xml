@@ -118,6 +118,12 @@
         <property name="typeCode" value="User"/>
     </bean>
 
+    <bean id="myEvent" class="training.my.event_listener.MyEvent"/>
+
+    <bean id="myEventListener" class="training.my.event_listener.MyEventListener" parent="abstractEventListener"/>
+
+    <bean id="myCarService" class="training.my.event_listener.MyCarService"/>
+
 
 <!--    <bean id="orderController" class="training.my.controller.OrderController"/>-->
 
