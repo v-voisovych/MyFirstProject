@@ -124,6 +124,8 @@
 
     <bean id="myCarService" class="training.my.event_listener.MyCarService"/>
 
+    <bean id="myUserService" class="training.my.service.impl.MyUserServiceImpl"/>
+
 
 <!--    <bean id="orderController" class="training.my.controller.OrderController"/>-->
 

@@ -1,0 +1,32 @@
+#Module 3 Task 1
+
+INSERT_UPDATE ServicelayerJob ;code[unique=true];springId
+                              ;currentNumberOrdersJob;currentNumberOrdersJob
+
+
+INSERT_UPDATE CurrentNumberOrdersCronJob ;code[unique=true];job(code);sessionLanguage(isocode)[default=en];sessionCurrency(isocode)[default=EUR]
+                                ;currentNumberOrdersCronJob;currentNumberOrdersJob
+
+INSERT_UPDATE Trigger ;cronJob(code)[unique=true];cronExpression
+                      ;currentNumberOrdersCronJob;0 0/2 * 1/1 * ? *
+
+
+#Module 3 Task 2
+
+
+INSERT_UPDATE ServicelayerJob ;code[unique=true];springId
+                              ;currentNumberUsersJob;currentNumberUsersJob
+
+INSERT_UPDATE CurrentNumberUsersCronJob ;code[unique=true];job(code);sessionLanguage(isocode)[default=en];sessionCurrency(isocode)[default=EUR]
+                                        ;currentNumberUsersCronJob;currentNumberUsersJob
+
+INSERT_UPDATE Trigger ;cronJob(code)[unique=true];cronExpression
+                      ;currentNumberUsersCronJob;0 0/2 * 1/1 * ? *
+
+
+INSERT_UPDATE CompositeEntry ;code[unique=true];executableCronJob(code);
+                             ;currentNumberOrdersEntry;currentNumberOrdersCronJob
+                             ;currentNumberUsersEntry;currentNumberUsersCronJob
+
+INSERT_UPDATE CompositeCronJob ;code[unique=true];job(code);compositeEntries(code);sessionUser(uid)[default=admin];sessionLanguage(isocode)[default=en]
+                               ;myCompositeCronJob;compositeJobPerformable;currentNumberOrdersEntry, currentNumberUsersEntry
