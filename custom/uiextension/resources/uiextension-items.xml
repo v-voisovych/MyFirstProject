@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="items.xsd">
+<!--	<collectiontypes>-->
+<!--		<collectiontype code="CarCollection" elementtype="Car" autocreate="true" generate="true" type="list"/>-->
+<!--		<collectiontype code="DriverCollection" elementtype="Driver" autocreate="true" generate="true" type="list"/>-->
+<!--	</collectiontypes>-->
+
+	<relations>
+		<relation code="Driver2Car" localized="false" generate="true" autocreate="true">
+			<deployment table="Driver2Car" typecode="10112"/>
+			<sourceElement type="Driver" qualifier="drivers" cardinality="many" ordered="false" collectiontype="set">
+				<modifiers read="true" write="true" search="true" optional="true"/>
+			</sourceElement>
+			<targetElement type="Car" qualifier="cars" cardinality="many" ordered="false" collectiontype="set">
+				<modifiers read="true" write="true" search="true" optional="true"/>
+			</targetElement>
+		</relation>
+	</relations>
+
+
+	<itemtypes>
+
+		<itemtype code="Courses" generate="true" autocreate="true">
+			<deployment table="TrainingCourses" typecode="10128"/>
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" write="true" read="true" unique="true" search="true"/>
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" write="true" read="true" search="true"/>
+				</attribute>
+				<attribute qualifier="duration" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" write="true" read="true" search="true"/>
+				</attribute>
+				<attribute qualifier="amount" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" write="true" read="true" search="true"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Driver" generate="true" autocreate="true">
+			<deployment table="Driver" typecode="10110"/>
+			<attributes>
+				<attribute qualifier="name" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" search="true" read="true" write="true" unique="true"/>
+				</attribute>
+				<attribute qualifier="dateOfBirth" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" write="true" read="true" search="true"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Car" generate="true" autocreate="true">
+			<deployment table="Car" typecode="10111"/>
+			<attributes>
+				<attribute qualifier="name" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" search="true" read="true" unique="true" write="true"/>
+				</attribute>
+				<attribute qualifier="year" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" search="true" read="true" write="true"/>
+				</attribute>
+				<attribute qualifier="color" type="java.lang.String">
+					<defaultvalue></defaultvalue>
+					<persistence type="property"/>
+					<modifiers optional="false" search="true" read="true" write="true"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+	</itemtypes>
+</items>

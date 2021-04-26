@@ -64,8 +64,9 @@
 			<deployment table="Film" typecode="11000"/>
 			<attributes>
 				<attribute qualifier="title" type="java.lang.String">
+					<defaultvalue></defaultvalue>
 					<description>Title</description>
-					<modifiers initial="true"/>
+					<modifiers optional="false" write="true" read="true" search="true"/>
 					<persistence type="property"/>
 				</attribute>
 			</attributes>
