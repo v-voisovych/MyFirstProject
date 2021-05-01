@@ -3,29 +3,27 @@
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
  * --- Generated at 1 трав. 2021 р., 11:43:05                   ---
  * ----------------------------------------------------------------
- *  
- * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
  */
-package de.hybris.cronjobtutorial.jalo;
+package training.my.validation;
 
-import de.hybris.platform.cronjob.jalo.CronJob;
 import de.hybris.platform.directpersistence.annotation.SLDSafe;
 import de.hybris.platform.jalo.Item.AttributeMode;
+import de.hybris.platform.validation.jalo.constraints.AttributeConstraint;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Generated class for type CurrentNumberOrdersCronJob.
+ * Generated class for type NotLessThan21Constraint.
  */
 @SLDSafe
 @SuppressWarnings({"unused","cast"})
-public class CurrentNumberOrdersCronJob extends CronJob
+public class NotLessThan21Constraint extends AttributeConstraint
 {
 	protected static final Map<String, AttributeMode> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
-		final Map<String, AttributeMode> tmp = new HashMap<String, AttributeMode>(CronJob.DEFAULT_INITIAL_ATTRIBUTES);
+		final Map<String, AttributeMode> tmp = new HashMap<String, AttributeMode>(AttributeConstraint.DEFAULT_INITIAL_ATTRIBUTES);
 		DEFAULT_INITIAL_ATTRIBUTES = Collections.unmodifiableMap(tmp);
 	}
 	@Override

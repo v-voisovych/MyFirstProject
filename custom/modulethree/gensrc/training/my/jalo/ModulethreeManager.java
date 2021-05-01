@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 26 квіт. 2021 р., 16:53:20                  ---
+ * --- Generated at 1 трав. 2021 р., 11:43:05                   ---
  * ----------------------------------------------------------------
  */
 package training.my.jalo;
@@ -22,6 +22,7 @@ import de.hybris.platform.jalo.type.JaloGenericCreationException;
 import java.util.HashMap;
 import java.util.Map;
 import training.my.constants.ModulethreeConstants;
+import training.my.validation.NotLessThan21Constraint;
 
 /**
  * Generated class for type <code>ModulethreeManager</code>.
@@ -98,6 +99,32 @@ public class ModulethreeManager extends Extension
 	public CurrentNumberUsersCronJob createCurrentNumberUsersCronJob(final Map attributeValues)
 	{
 		return createCurrentNumberUsersCronJob( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public NotLessThan21Constraint createNotLessThan21Constraint(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType("NotLessThan21Constraint");
+			return (NotLessThan21Constraint)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating NotLessThan21Constraint : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public NotLessThan21Constraint createNotLessThan21Constraint(final Map attributeValues)
+	{
+		return createNotLessThan21Constraint( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public static final ModulethreeManager getInstance()

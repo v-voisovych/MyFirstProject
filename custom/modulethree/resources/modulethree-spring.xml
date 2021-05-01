@@ -87,4 +87,18 @@
 
     <bean id="currentNumberUsersJob" class="training.my.my_cronjob.CurrentNumberUsersJob" parent="abstractJobPerformable"/>
 
+    <bean id="placeorderProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/myprocess/placeorder.xml"/>
+    </bean>
+
+    <bean id="addOrderNode" class="training.my.action.AddOrderNode" parent="abstractAction"/>
+    <bean id="productOrderedNode" class="training.my.action.ProductOrderedNode" parent="abstractAction"/>
+    <bean id="productRemovedNode" class="training.my.action.ProductRemovedNode" parent="abstractAction"/>
+    <bean id="nothingChoosen" class="training.my.action.NothingChoosen" parent="abstractAction"/>
+    <bean id="myCartService" class="training.my.service.impl.MyCartService"/>
+
+<!--    <bean id="myUser" class="training.my.MyUser"/>-->
+
+
+
 </beans>

@@ -30,3 +30,29 @@ INSERT_UPDATE CompositeEntry ;code[unique=true];executableCronJob(code);
 
 INSERT_UPDATE CompositeCronJob ;code[unique=true];job(code);compositeEntries(code);sessionUser(uid)[default=admin];sessionLanguage(isocode)[default=en]
                                ;myCompositeCronJob;compositeJobPerformable;currentNumberOrdersEntry, currentNumberUsersEntry
+
+
+INSERT_UPDATE Unit ;code[unique=true];name;unitType
+                   ;unitOne;unitOne;mytype
+
+INSERT_UPDATE Cart ;code[unique=true];name;date[dateformat=dd.MM.yyyy HH:mm];currency(isocode);user(uid)
+                   ;cartOne;cartOne;17.10.2021 10:58;EUR;one
+
+$START_USERRIGHTS
+Type;UID;MemberOfGroups;Password;Target;read;change;create;delete;change_perm
+UserGroup;myGroup;employeegroup;
+;;;;Product;+;-;-;-;-
+$END_USERRIGHTS
+
+INSERT_UPDATE Customer;uid[unique=true];customerID[unique=true];groups(uid);password;name
+                      ;one;K2004-C0001;myGroup;1234;Ivan
+                      ;two;K2004-C0002;myGroup;1234;Stepan
+                      ;three;K2004-C0003;myGroup;1234;Mykola
+                      ;four;K2004-C0004;myGroup;1234;Max
+                      ;five;K2004-C0005;myGroup;1234;Marko
+
+INSERT_UPDATE Product;code[unique=true];name;catalogVersion(version)
+                        ;carOne;BMW;Staged
+                        ;carTwo;Honda;Staged
+                        ;carThree;Audi;Staged
+
