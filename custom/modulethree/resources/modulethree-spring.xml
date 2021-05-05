@@ -97,6 +97,12 @@
     <bean id="nothingChoosen" class="training.my.action.NothingChoosen" parent="abstractAction"/>
     <bean id="myCartService" class="training.my.service.impl.MyCartService"/>
 
+
+    <bean id="attributeConstraintValidator" class="training.my.validation.FixedAttributeConstraintValidator">
+        <property name="typeService" ref="typeService" />
+        <property name="annotationsMappingRegistry" ref="annotationsMappingRegistry" />
+    </bean>
+
 <!--    <bean id="myUser" class="training.my.MyUser"/>-->
 
 

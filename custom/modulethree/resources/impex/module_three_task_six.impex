@@ -1,0 +1,6 @@
+INSERT_UPDATE MinConstraint;id[unique=true];severity(code,itemtype(code));active;descriptor(enclosingType(code),qualifier);value;
+                           ;UserAgeMinValueConstraint;ERROR:Severity;true;User:age;21;
+
+
+INSERT_UPDATE NotLessThan21Constraint;id[unique=true];severity(code,itemtype(code));active;descriptor(enclosingType(code),qualifier)
+                                     ;MyNotLess;ERROR:Severity;true;User:age

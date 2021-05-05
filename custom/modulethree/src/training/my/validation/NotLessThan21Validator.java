@@ -11,7 +11,6 @@ public class NotLessThan21Validator implements ConstraintValidator<NotLessThan21
 
     @Override
     public boolean isValid(Integer integer, ConstraintValidatorContext constraintValidatorContext) {
-
-        return integer < 21;
+        return !(integer <= 21);
     }
 }

@@ -29,15 +29,16 @@
 
 		<itemtype code="NotLessThan21Constraint" autocreate="true" generate="true" extends="AttributeConstraint"
 				  jaloclass="training.my.validation.NotLessThan21Constraint"
+				  singleton="false" jaloonly="false"
 				  >
 			<attributes>
-				<attribute qualifier="annotation" type="java.lang.Class" redeclare="true">
-					<modifiers write="false" initial="true" optional="false"/>
+				<attribute qualifier="annotation" type="java.lang.Class" redeclare="true" generate="true" autocreate="true">
+					<persistence type="property" qualifier=""/>
+					<modifiers read="true" write="false" search="true" encrypted="false" optional="true" removable="true" initial="true" unique="false" private="false" partof="false"/>
 					<defaultvalue>training.my.validation.NotLessThan21.class</defaultvalue>
 				</attribute>
 			</attributes>
 		</itemtype>
-
 	</itemtypes>
 
 
