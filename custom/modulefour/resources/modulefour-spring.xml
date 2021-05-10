@@ -5,6 +5,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/aop
@@ -84,6 +85,31 @@
     </bean>
 
     <bean id="myTransaction" class="training.my.task_one_and_two.MyTransaction"/>
+
+    <bean id="ehCacheEntityCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+        <constructor-arg name="name" value="ehCacheEntityCacheRegion"/>
+        <constructor-arg name="maxEntries" value="70000"/>
+        <constructor-arg name="evictionPolicy" value="LFU"/>
+        <property name="handledTypes">
+            <array>
+                <value>__ALL_TYPES__</value>
+                <value>__NO_QUERY__</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean name="myCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+        <constructor-arg name="name" value="myCacheRegion"/>
+        <constructor-arg name="maxEntries" value="30000"/>
+        <constructor-arg name="evictionPolicy" value="LRU"/>
+        <property name="handledTypes">
+            <array>
+                <value>1</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="myCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="myCacheRegion"/>
 
 
 </beans>
