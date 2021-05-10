@@ -103,7 +103,7 @@
         <property name="annotationsMappingRegistry" ref="annotationsMappingRegistry" />
     </bean>
 
-<!--    <bean id="myUser" class="training.my.MyUser"/>-->
+
 
 
 

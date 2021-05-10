@@ -122,7 +122,7 @@
 
     <bean id="myEventListener" class="training.my.event_listener.MyEventListener" parent="abstractEventListener"/>
 
-    <bean id="myCarService" class="training.my.event_listener.MyCartService"/>
+    <bean id="myCartServiceEvent" class="training.my.event_listener.MyCartServiceEvent"/>
 
     <bean id="myUserService" class="training.my.service.impl.MyUserServiceImpl"/>
 
