@@ -7,6 +7,11 @@
     <cms:pageSlot position="Section1" var="feature">
         <cms:component component="${feature}" />
     </cms:pageSlot>
+
+    <cms:pageSlot position="CurrentNumberOfUsersSlotForPage" var="feature" >
+        <cms:component component="${feature}" />
+    </cms:pageSlot>
+
     <div class="row no-margin">
         <div class="col-xs-12 col-md-6 no-space">
             <cms:pageSlot position="Section2A" var="feature" element="div" class="row no-margin">
@@ -36,5 +41,6 @@
     <cms:pageSlot position="Section5" var="feature" element="div">
         <cms:component component="${feature}" element="div" class="yComponentWrapper"/>
     </cms:pageSlot>
+
 
 </template:page>

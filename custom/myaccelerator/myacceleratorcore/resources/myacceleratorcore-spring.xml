@@ -18,6 +18,7 @@
 	<import resource="classpath:/myacceleratorcore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/myacceleratorcore/integration/hot-folder-common-spring.xml"/>
 
+
 	<!-- SystemSetup for the MyacceleratorCore -->
 	<bean id="acceleratorCoreSystemSetup" class="training.my.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
@@ -538,4 +539,6 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<bean name="currentNumberOfUsersAttributeHandler" class="training.my.core.myattributehandler.CurrentNumberOfUsersAttributeHandler"/>
 </beans>

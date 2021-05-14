@@ -1,0 +1,14 @@
+#Task 5
+
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+INSERT_UPDATE CurrentNumberOfUsers ;name[unique=true];$contentCV;uid;userHeader
+                                   ;myCurrentNumberOfUsers;;myCurrentNumberOfUsers;current number of users:
+
+INSERT_UPDATE ContentSlot ;$contentCV;uid[unique=true];cmsComponents(uid)
+                          ;;CurrentNumberOfUsersSlot;myCurrentNumberOfUsers
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid)[unique=true]
+                                ;;myacceleratorstorefront-Homepage;CurrentNumberOfUsersSlotForPage;;CurrentNumberOfUsersSlot

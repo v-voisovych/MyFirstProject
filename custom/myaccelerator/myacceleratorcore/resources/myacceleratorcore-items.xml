@@ -71,6 +71,22 @@
 
             </itemtype>
 
+            <itemtype code="CurrentNumberOfUsers" extends="SimpleCMSComponent"
+                      autocreate="true" generate="true"
+                      jaloclass="training.my.core.jalo.CurrentNumberOfUsers">
+                <attributes>
+                    <attribute qualifier="userHeader" type="java.lang.String">
+                        <defaultvalue></defaultvalue>
+                        <modifiers read="true" write="true" optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="currentNumberOfUsers" type="java.lang.Long">
+                        <modifiers read="true" write="true" optional="true" unique="false"/>
+                        <persistence type="dynamic" attributeHandler="currentNumberOfUsersAttributeHandler"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
             <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
                       autocreate="true" generate="true"
                       jaloclass="training.my.core.jalo.ApparelSizeVariantProduct">
@@ -103,6 +119,7 @@
                 </attributes>
             </itemtype>
         </typegroup>
+
 
     </itemtypes>
 </items>
