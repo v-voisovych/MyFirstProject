@@ -12,3 +12,29 @@ INSERT_UPDATE ContentSlot ;$contentCV;uid[unique=true];cmsComponents(uid)
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid)[unique=true]
                                 ;;myacceleratorstorefront-Homepage;CurrentNumberOfUsersSlotForPage;;CurrentNumberOfUsersSlot
+                                ;;myacceleratorstorefrontTwo-Homepage;CurrentNumberOfOrdersSlotForPage;;CurrentNumberOfOrdersSlot
+
+#Task 6
+
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+INSERT_UPDATE CurrentNumberOfOrders ;name[unique=true];$contentCV;uid;orderHeader
+                                    ;myCurrentNumberOfOrders;;myCurrentNumberOfOrders;current number of orders:
+
+INSERT_UPDATE ContentSlot ;$contentCV;uid[unique=true];cmsComponents(uid)
+                          ;;CurrentNumberOfOrdersSlot;myCurrentNumberOfOrders
+
+INSERT_UPDATE PageTemplate ;$contentCV;uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+                           ;;Task6PageTemplate;Task6PageTemplate;tasksix/task6LayoutPage;ContentPage
+
+INSERT_UPDATE ContentPage ;$contentCV;uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default=true];approvalStatus(code)[default='approved'];homepage[default=false]
+                          ;;task6ContentPage;task6ContentPage;Task6PageTemplate;task6CMSPage
+
+INSERT_UPDATE ContentSlotName ;name[unique=true];template(uid,$contentCV)[unique=true][default='Task6PageTemplate'];validComponentTypes(code);compTypeGroup(code)
+                              ;currentNumberOfUsers;;;wide
+                              ;currentNumberOfOrders;;;wide
+
+INSERT_UPDATE ContentSlotForTemplate ;$contentCV;uid[default=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='Task6PageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                     ;;CurrentNumberOfOrdersSlot-currentNumberOfOrders;currentNumberOfOrders;;CurrentNumberOfOrdersSlot;true
+                                     ;;CurrentNumberOfUsersSlot-currentNumberOfUsers;currentNumberOfUsers;;CurrentNumberOfUsersSlot;true
