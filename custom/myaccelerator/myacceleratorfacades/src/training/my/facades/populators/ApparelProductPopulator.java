@@ -55,6 +55,8 @@ public class ApparelProductPopulator implements Populator<ProductModel, ProductD
 				}
 				target.setGenders(genders);
 			}
+			target.setCustomSize(apparelProductModel.getCustomSize());
+			target.setCustomSizeValue(apparelProductModel.getCustomSizeValue());
 		}
 	}
 

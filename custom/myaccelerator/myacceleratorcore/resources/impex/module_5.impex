@@ -1,0 +1,84 @@
+#Task 1
+
+$serverConfigName = Default
+$indexConfigName = Default
+$searchConfigName = Default
+$solrIndexedType=apparel-ukProductType
+$facetSearchConfigName = apparel-ukIndex
+$facetSearchConfigDescription = Apparel UK Solr Index
+$searchIndexNamePrefix=apparel-uk
+$indexLanguages = en
+$indexCurrencies = GBP
+$productCatalog=apparelProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version)
+$indexBaseSite=apparel-uk
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true]     ;description                  ;indexNamePrefix       ;languages(isocode)    ;currencies(isocode)    ;solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+                                   ;$facetSearchConfigName;$facetSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName ;$searchConfigName ;$indexConfigName ;$solrIndexedType  ;true                            ;$productCatalog:Online,$productCatalog:Staged
+
+UPDATE BaseSite;uid[unique=true];solrFacetSearchConfiguration(name)
+               ;$indexBaseSite;$facetSearchConfigName
+
+INSERT_UPDATE SolrValueRangeSet;name[unique=true] ;qualifier ;type  ;solrValueRanges(&rangeValueRefID)
+                               ;customSizeRangeSet;default   ;double;customSize1,customSize2,customSize3
+
+INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
+                            ;customSize1     ;customSizeRangeSet         ;0-10        ;0   ;10
+                            ;customSize2     ;customSizeRangeSet         ;10-20       ;10  ;20
+                            ;customSize3     ;customSizeRangeSet         ;20+     ;20  ;1000000
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider     ;valueProviderParameter
+                                 ;$solrIndexedType                        ;customSizeValue  ;double    ;                  ;                       ;                        ;                         ;                                  ;                                 ;customSizeValueProvider;
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;facetDisplayNameProvider;customFacetSortProvider       ;topValuesProvider        ;rangeSets(name)
+                                 ;$solrIndexedType                        ;customSize       ;double    ;                  ;                       ;                        ;                         ;                   ;MultiSelectOr  ;Alpha          ;4000    ;true   ;                                  ;                                 ;                  ;                        ;facetNameSortProviderAscending;defaultTopValuesProvider ;customSizeRangeSet
+
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+                             ;$solrIndexedType       ;Product   ;false  ;sortRef1,sortRef2,sortRef3,sortRef4,sortRef5,sortRef6,sortRef7,sortRef8
+
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+                      ;sortRef1  ;$solrIndexedType                    ;relevance        ;true
+                      ;sortRef2  ;$solrIndexedType                    ;topRated         ;false
+                      ;sortRef3  ;$solrIndexedType                    ;name-asc         ;false
+                      ;sortRef4  ;$solrIndexedType                    ;name-desc        ;false
+                      ;sortRef5  ;$solrIndexedType                    ;price-asc        ;false
+                      ;sortRef6  ;$solrIndexedType                    ;price-desc       ;false
+                      ;sortRef7  ;$solrIndexedType                    ;customSize-asc   ;false
+                      ;sortRef8  ;$solrIndexedType                    ;customSize-desc  ;false
+
+
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+                           ;$solrIndexedType:relevance                     ;inStockFlag           ;false
+                           ;$solrIndexedType:relevance                     ;score                 ;false
+                           ;$solrIndexedType:topRated                      ;inStockFlag           ;false
+                           ;$solrIndexedType:topRated                      ;reviewAvgRating       ;false
+                           ;$solrIndexedType:name-asc                      ;name                  ;true
+                           ;$solrIndexedType:name-desc                     ;name                  ;false
+                           ;$solrIndexedType:price-asc                     ;priceValue            ;true
+                           ;$solrIndexedType:price-desc                    ;priceValue            ;false
+                           ;$solrIndexedType:customSize-asc                ;customSizeValue       ;true
+                           ;$solrIndexedType:customSize-desc               ;customSizeValue       ;false
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType];facet;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength;includeInResponse[default=true];useForHighlighting[default=false]
+                                      ; customSizeValue:$solrIndexedType                               ;                                                                                                 ;     ;                             ;                   ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;                             ;                               ;
+
+INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];facet[default=true];facetType(code);priority;facetDisplayNameProvider;facetSortProvider;facetTopValuesProvider  ;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+                                     ;customSize:$solrIndexedType                                    ;			         ;MultiSelectOr  ;4000    ;					       ;				 ;defaultTopValuesProvider;                               ;
+
+
+#Task 2
+$solrIndexedType=apparel-ukProductType
+
+# Search query template
+INSERT_UPDATE SolrSearchQueryTemplate;name[unique=true];indexedType(identifier)[unique=true];ftsQueryBuilder
+                                     ;SUGGESTIONS      ;$solrIndexedType                    ;defaultFreeTextQueryBuilder
+
+# Non-facet search query properties
+INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=SUGGESTIONS:$solrIndexedType];facet;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsPhraseQuerySlop;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength;includeInResponse[default=true]
+                                     ;itemtype:$solrIndexedType                                      ;                                                                                                     ;     ;                             ;                   ;0                 ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;                             ;
+                                     ;code:$solrIndexedType                                          ;                                                                                                     ;     ;TRUE                         ;90                 ;0                 ;                       ;             ;                            ;                  ;                               ;POSTFIX                                    ;45                   ;3                            ;
+                                     ;name:$solrIndexedType                                          ;                                                                                                     ;     ;TRUE                         ;100                ;0                 ;                       ;50           ;                            ;                  ;                               ;                                           ;                     ;                             ;
+                                     ;priceValue:$solrIndexedType                                    ;                                                                                                     ;     ;                             ;                   ;0                 ;                       ;             ;                            ;                  ;                               ;                                           ;                     ;                             ;
+
+
+#id:apparelProductCatalog/*/300441142
