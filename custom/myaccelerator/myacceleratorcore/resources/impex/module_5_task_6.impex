@@ -1,0 +1,34 @@
+$lang = en
+
+$promogroup = apparelUKPromoGrp
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];translatorId;translatorParameters;categories(id)
+                                  ;my_order_percentage_discount;My Percentage discount on cart;1100;Apply {value}% discount on the cart total;ruleExecutableActionTranslator;actionId->ruleOrderPercentageDiscountAction;cart_discounts
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+                                           ;my_order_percentage_discount;value;1000;My Percentage discount value;My Percentage discount that will be applied on the cart total;java.math.BigDecimal;;
+
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[unique=true]
+                                                 ;my_order_percentage_discount;PromotionSourceRule
+
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+                                     ;my_cart_total;My Cart total;1200;My Cart total {operator} {value};false;ruleCartTotalConditionTranslator;;cart
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+                                              ;y_cart_total;operator;1100;Operator;Operator to compare the cart total value;Enum(de.hybris.platform.ruledefinitions.AmountOperator);"""GREATER_THAN_OR_EQUAL""";
+                                              ;my_cart_total;value;1000;My Cart Total Value;Map of currency and value of the cart total to be used;Map(ItemType(Currency),java.math.BigDecimal);;
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[unique=true]
+                                                    ;my_cart_total;PromotionSourceRule
+
+INSERT_UPDATE PromotionSourceRule;code[unique=true];name;description;messageFired;priority;maxAllowedRuns;ruleGroup(code);startDate[dateformat=dd.MM.yyyy HH:mm];endDate[dateformat=dd.MM.yyyy HH:mm];conditions;actions;website(Identifier)[default=apparelUKPromoGrp]
+                                 ;MyPromotion;My Promotion;promotion for the cart with total price greater than 1000 - 50% discount;promotion for the cart with total price greater than 1000 - 50% discount;1000;1;orderPromotionRuleGroup;10.06.2021 10:58;12.06.2021 10:58;"[{""definitionId"":""y_cart_total"",""parameters"":{""value"":{""uuid"":""9e5f476b-4d7f-420b-8ea0-d43a0752969e"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""GBP"":1000}},""operator"":{""uuid"":""fdefe9e0-e006-4822-ba41-e1620294ce63"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_order_percentage_discount"",""parameters"":{""value"":{""uuid"":""426423d4-3156-4282-8d39-b52775a717c3"",""type"":""java.math.BigDecimal"",""value"":50}}}]";
+
+$defaultPromoGrp=electronicsPromoGrp
+$promotionsModule="promotions-module"
+$previewModule="promotions-preview-module"
+$ruleImportProcessor=processor=de.hybris.platform.ruleengineservices.impex.impl.ConditionalImportProcessor,condition=de.hybris.platform.ruleengineservices.impex.impl.RuleImportCondition
+
+INSERT_UPDATE PromotionSourceRule[$ruleImportProcessor];&sourceRule;code[unique=true];priority;maxAllowedRuns;stackable[default=false];ruleGroup(code);conditions;actions;website(Identifier)[default=$defaultPromoGrp];excludeFromStorefrontDisplay[default=false];status(code)[unique=true,default=UNPUBLISHED]
+"#% afterEach: de.hybris.platform.core.Registry.getApplicationContext().getBean(""ruleEngineSystemSetup"").registerSourceRuleForDeployment(impex.getLastImportedItem(), new String[]{$promotionsModule});"
+                                                       ;percentage_discount_on_sony_camera;percentage_discount_on_sony_camera;210;1;false;productPromotionRuleGroup;"[{""definitionId"":""y_qualifying_categories"",""parameters"":{""quantity"":{""uuid"":""c465645e-fad7-4be4-bee3-b8051e4c686a"",""type"":""java.lang.Integer"",""value"":1},""categories_operator"":{""uuid"":""25370200-6232-4d42-bc30-2115ea86708f"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""excluded_categories"":{""uuid"":""e50949f4-2aaf-4316-9704-f99b7308b7fd"",""type"":""List(ItemType(Category))""},""categories"":{""uuid"":""10c31bf0-92ea-464a-94a2-4ab22cb1193b"",""type"":""List(ItemType(Category))"",""value"":[""brand_5""]},""excluded_products"":{""uuid"":""172faee2-676a-415f-912d-5e1dc2bb3ec7"",""type"":""List(ItemType(Product))""},""operator"":{""uuid"":""589693df-111c-4686-bc3e-875d2c82fff5"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_order_entry_percentage_discount"",""parameters"":{""value"":{""uuid"":""f6195d57-a635-4058-9200-e6293e59d7e6"",""type"":""java.math.BigDecimal"",""value"":10}}}]";;true
